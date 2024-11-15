@@ -6,24 +6,27 @@ public class Solution
     public int RemoveElement(int[] nums, int val)
     {
         var k = 0;
-        var arr = new List<int>();
-        for (var i = 0; i < nums.Length; i++)
+        for (var i = 0; i < nums.Length - k; i++)
         {
             if (nums[i] == val)
             {
+                Unshift(nums, i);
+                i--;
                 k++;
-            }
-            else
-            {
-                arr.Add(nums[i]);
             }
         }
 
-        Array.Copy(arr.ToArray(), nums, arr.Count);
-        for (int i = arr.Count; i < nums.Length; i++)
+        return nums.Length - k;
+    }
+
+    private void Unshift(int[] nums, int from)
+    {
+        var first = nums[from];
+        for (int i = from + 1; i < nums.Length; i++)
         {
-            nums[i] = 0;
+            nums[i - 1] = nums[i];
         }
-        return k;
+
+        nums[nums.Length - 1] = first;
     }
 }

@@ -21,5 +21,7 @@ public class RemoveElementTests
         var sol = new Solution();
         int[] nums = [0, 1, 2, 2, 3, 0, 4, 2];
         var k = sol.RemoveElement(nums, 2);
+        Assert.That(k, Is.EqualTo(5));
+        Assert.That(nums, Is.EquivalentTo(new[] { 0, 1, 4, 0, 3, 2, 2, 2 }));
     }
 }
