@@ -1,4 +1,4 @@
-﻿using LeetCode.RemoveElement;
+﻿using LeetCode.RemoveDuplicatesFromSortedArray;
 
 namespace TestProject.RemoveDuplicatesFromSortedArray;
 
@@ -9,19 +9,32 @@ public class Tests
     public void Test1()
     {
         var sol = new Solution();
-        int[] nums = [3, 2, 2, 3];
-        var k = sol.RemoveElement(nums, 3);
+        int[] nums = [1, 1, 2];
+        var k = sol.RemoveDuplicates(nums);
         Assert.That(k, Is.EqualTo(2));
-        Assert.That(nums, Is.EquivalentTo(new[] { 2, 2 }));
+        Assert.That(nums.Take(k), Is.EquivalentTo(new[] { 1, 2 }));
+    }
+
+    [Test]
+    public void Test3()
+    {
+        var sol = new Solution();
+        int[] nums = [0, 0, 1, 1];
+        var k = sol.RemoveDuplicates(nums);
+        Assert.That(k, Is.EqualTo(2));
+        Assert.That(nums.Take(k), Is.EquivalentTo(new[] { 0, 1 }));
     }
 
     [Test]
     public void Test2()
     {
         var sol = new Solution();
-        int[] nums = [0, 1, 2, 2, 3, 0, 4, 2];
-        var k = sol.RemoveElement(nums, 2);
-        Assert.That(k, Is.EqualTo(5));
-        Assert.That(nums, Is.EquivalentTo(new[] { 0, 1, 4, 0, 3, 2, 2, 2 }));
+        int[] nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
+        var k = sol.RemoveDuplicates(nums);
+        Assert.That(
+            nums.Take(k),
+            Is.EquivalentTo(new[] { 0, 1, 2, 3, 4 }),
+            string.Join(", ", nums)
+        );
     }
 }
